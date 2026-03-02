@@ -8,7 +8,7 @@ class Profile(models.Model):
     Stores personal details, photo, and social links.
     """
     name = models.CharField(max_length=255)
-    photo = models.ImageField(upload_to='profile/', null=True, blank=True)
+    foto = models.ImageField(upload_to='profile/', null=True, blank=True)
     role = models.CharField(max_length=100, help_text="e.g., Full-Stack Engineer, Student")
     description = models.TextField(help_text="Professional summary or bio")
     email = models.EmailField(unique=True)

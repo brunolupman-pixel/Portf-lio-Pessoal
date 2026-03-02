@@ -17,7 +17,7 @@ class Technology(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='projects/', null=True, blank=True)
+    imagem = models.ImageField(upload_to='projects/', null=True, blank=True)
     technologies = models.ManyToManyField(
         Technology,
         related_name='projects',

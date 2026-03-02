@@ -12,8 +12,8 @@ class AcademicBackground(models.Model):
         on_delete=models.CASCADE,
         related_name='academic_background'
     )
-    course = models.CharField(max_length=255, help_text="e.g., Bachelor's in Computer Science")
-    institution = models.CharField(max_length=255)
+    course = models.CharField(max_length=50, help_text="e.g., Bachelor's in Computer Science")
+    institution = models.CharField(max_length=80)
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True, help_text="Leave blank if currently enrolled")
     description = models.TextField(blank=True, help_text="GPA, achievements, relevant coursework, etc.")
