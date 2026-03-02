@@ -8,18 +8,19 @@ class AcademicBackgroundAdmin(admin.ModelAdmin):
     search_fields = ('course', 'institution', 'profile__name')
     list_filter = ('start_date', 'end_date', 'institution')
     readonly_fields = ('created_at',)
-    
+    ordering = ('-end_date', '-start_date')
+
     fieldsets = (
-        ('Academic Details', {
+        ('Detalhes Acadêmicos', {
             'fields': ('profile', 'course', 'institution')
         }),
-        ('Duration', {
+        ('Período', {
             'fields': ('start_date', 'end_date')
         }),
-        ('Description', {
+        ('Descrição', {
             'fields': ('description',)
         }),
-        ('Metadata', {
+        ('Metadados', {
             'fields': ('created_at',),
             'classes': ('collapse',)
         }),

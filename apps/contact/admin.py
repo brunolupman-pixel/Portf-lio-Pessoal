@@ -7,19 +7,19 @@ class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ('subject', 'name', 'email', 'created_at', 'is_read')
     search_fields = ('name', 'email', 'subject', 'message')
     list_filter = ('created_at', 'is_read')
-    readonly_fields = ('created_at', 'email', 'name', 'message')
+    readonly_fields = ('created_at',)
     
     fieldsets = (
-        ('Message Information', {
+        ('Informações da Mensagem', {
             'fields': ('subject', 'is_read')
         }),
-        ('Sender Information', {
+        ('Remetente', {
             'fields': ('name', 'email')
         }),
-        ('Message', {
+        ('Mensagem', {
             'fields': ('message',)
         }),
-        ('Metadata', {
+        ('Metadados', {
             'fields': ('created_at',),
             'classes': ('collapse',)
         }),

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import Technology, Project
 
 
@@ -12,23 +13,24 @@ class TechnologyAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at', 'updated_at', 'get_technologies')
+    list_display = ('title', 'created_at', 'updated_at', 'image_preview', 'get_technologies')
     search_fields = ('title', 'description', 'technologies__name')
     list_filter = ('created_at', 'technologies')
-    readonly_fields = ('created_at', 'updated_at')
+    readonly_fields = ('created_at', 'updated_at', 'image_preview')
     filter_horizontal = ('technologies',)
+    ordering = ('-created_at',)
 
     fieldsets = (
-        ('Project Information', {
-            'fields': ('title', 'image')
+        ('Informações do Projeto', {
+            'fields': ('title', 'image', 'image_preview')
         }),
-        ('Description', {
+        ('Descrição', {
             'fields': ('description',)
         }),
-        ('Technologies', {
+        ('Tecnologias', {
             'fields': ('technologies',)
         }),
-        ('Timestamps', {
+        ('Registro', {
             'fields': ('created_at', 'updated_at'),
             'classes': ('collapse',)
         }),
@@ -37,3 +39,9 @@ class ProjectAdmin(admin.ModelAdmin):
     def get_technologies(self, obj):
         return ', '.join([tech.name for tech in obj.technologies.all()])
     get_technologies.short_description = 'Technologies'
+
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="width: 60px; height:60px; object-fit:cover;" />', obj.image.url)
+        return '-'
+    image_preview.short_description = 'Imagem'
