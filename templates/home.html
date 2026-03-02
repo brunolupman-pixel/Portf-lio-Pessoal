@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ profile.name }}</h1>
+<p>{{ profile.description }}</p>
+<h2>Projetos em destaque</h2>
+<ul>
+    {% for proj in highlights %}
+        <li>{{ proj.title }}</li>
+    {% empty %}
+        <li>Nenhum projeto em destaque.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
