@@ -85,22 +85,18 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-# Use PostgreSQL if environment variables are set, otherwise fall back to SQLite
-DB_ENGINE = config('DB_ENGINE', default='django.db.backends.sqlite3')
+# Database configuration using dj_database_url
+# development default is SQLite, production can use a DATABASE_URL env var
+import dj_database_url
 
-if DB_ENGINE == 'django.db.backends.postgresql':
+DATABASE_URL = config('DATABASE_URL', default='')
+if DATABASE_URL:
+    # parse the URL (e.g. Neon connection string) and apply
     DATABASES = {
-        'default': {
-            'ENGINE': DB_ENGINE,
-            'NAME': config('DB_NAME', default='portfolio'),
-            'USER': config('DB_USER', default='postgres'),
-            'PASSWORD': config('DB_PASSWORD', default=''),
-            'HOST': config('DB_HOST', default='localhost'),
-            'PORT': config('DB_PORT', default='5432'),
-        }
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
     }
 else:
-    # Fallback to SQLite for development
+    # Fallback to SQLite for local development
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
