@@ -26,6 +26,16 @@ class ProfileAdmin(admin.ModelAdmin):
         }),
     )
 
+    def has_add_permission(self, request):
+        # allow adding only if no Profile exists
+        if self.model.objects.exists():
+            return False
+        return super().has_add_permission(request)
+
+    def has_delete_permission(self, request, obj=None):
+        # prevent deleting the only profile
+        return False
+
     def bio_preview(self, obj):
         return (obj.description[:60] + '...') if obj.description and len(obj.description) > 60 else obj.description
     bio_preview.short_description = 'Bio'

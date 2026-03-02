@@ -13,19 +13,22 @@ class TechnologyAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at', 'updated_at', 'imagem_preview', 'get_technologies')
-    search_fields = ('title', 'description', 'technologies__name')
-    list_filter = ('created_at', 'technologies')
+    list_display = ('title', 'destaque', 'created_at')
+    search_fields = ('title', 'description')
+    list_filter = ('destaque', 'technologies')
     readonly_fields = ('created_at', 'updated_at', 'imagem_preview')
     filter_horizontal = ('technologies',)
     ordering = ('-created_at',)
 
     fieldsets = (
         ('Informações do Projeto', {
-            'fields': ('title', 'imagem', 'imagem_preview')
+            'fields': ('title', 'imagem', 'imagem_preview', 'destaque')
         }),
         ('Descrição', {
             'fields': ('description',)
+        }),
+        ('URLs', {
+            'fields': ('repository_url', 'demo_url')
         }),
         ('Tecnologias', {
             'fields': ('technologies',)
