@@ -1,0 +1,1 @@
+"""Migrations package for academic app (moved)."""
