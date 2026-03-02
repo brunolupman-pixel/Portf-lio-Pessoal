@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Formação Acadêmica</h1>
-<ul>
+<div class="timeline">
     {% for f in formations %}
-        <li>
-            <strong>{{ f.course }}</strong> - {{ f.institution }}<br>
-            <small>{{ f.start_date }} até {{ f.end_date|default:'presente' }}</small>
+        <div class="timeline-item">
+            <div class="timeline-title">{{ f.course }}</div>
+            <div class="timeline-inst">{{ f.institution }}</div>
+            <div class="timeline-dates">{{ f.start_date }} até {{ f.end_date|default:'presente' }}</div>
             {% if f.description %}
-                <p>{{ f.description }}</p>
+                <div class="timeline-desc">{{ f.description }}</div>
             {% endif %}
-        </li>
+        </div>
     {% empty %}
-        <li>Sem registros.</li>
+        <div class="timeline-item">Sem registros.</div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

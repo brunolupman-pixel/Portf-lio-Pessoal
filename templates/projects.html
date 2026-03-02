@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Todos os Projetos</h1>
-<ul>
+<div class="project-grid">
     {% for p in projects %}
-        <li>
-            <h3>{{ p.title }}</h3>
+        <div class="project-card">
             {% if p.imagem %}
-                <img src="{{ p.imagem.url }}" width="120" alt="{{ p.title }}" />
+                <img src="{{ p.imagem.url }}" alt="{{ p.title }}" class="project-card-img" />
             {% endif %}
-            <p>{{ p.description }}</p>
-            {% if p.tecnologias.all %}
-                <p><strong>Tecnologias:</strong> {{ p.tecnologias.all|join:", " }}</p>
-            {% endif %}
-            {% if p.link_repositorio %}<a href="{{ p.link_repositorio }}" target="_blank">Repositório</a>{% endif %}
-            {% if p.link_demo %} | <a href="{{ p.link_demo }}" target="_blank">Demo</a>{% endif %}
-        </li>
+            <div class="project-card-title">{{ p.title }}</div>
+            <div class="project-card-desc">{{ p.description }}</div>
+            <div class="project-card-techs">
+                {% for t in p.technologies.all %}
+                    <span class="badge">{{ t.name }}</span>
+                {% empty %}
+                    <span class="badge">Sem tecnologias</span>
+                {% endfor %}
+            </div>
+        </div>
     {% empty %}
-        <li>Sem projetos cadastrados.</li>
+        <div class="project-card">Sem projetos cadastrados.</div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

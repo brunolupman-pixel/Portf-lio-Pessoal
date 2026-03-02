@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Contato</h1>
-{% if submitted %}
-    <p>Sua mensagem foi enviada. Obrigado!</p>
-{% endif %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Enviar</button>
-</form>
+<div class="contact-container">
+    <h1>Contato</h1>
+    {% if submitted %}
+        <div class="toast-success">Sua mensagem foi enviada. Obrigado!</div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+</div>
 {% endblock %}

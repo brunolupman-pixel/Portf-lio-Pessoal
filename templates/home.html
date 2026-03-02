@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>{{ profile.name }}</h1>
-{% if profile.foto %}
-    <img src="{{ profile.foto.url }}" alt="{{ profile.name }}" width="120" />
-{% endif %}
-<p>{{ profile.description }}</p>
+<section class="hero">
+    {% if profile.foto %}
+        <img src="{{ profile.foto.url }}" alt="{{ profile.name }}" class="hero-img" />
+    {% endif %}
+    <div class="hero-name">{{ profile.name }}</div>
+    <div class="hero-role">{{ profile.role }}</div>
+    <div class="hero-desc">{{ profile.description|truncatechars:120 }}</div>
+    <div class="hero-socials">
+        {% if profile.linkedin %}
+            <a href="{{ profile.linkedin }}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+        {% endif %} {% if profile.github %}
+            <a href="{{ profile.github }}" target="_blank" title="GitHub"><i class="fa fa-github"></i></a>
+        {% endif %} {% if profile.email %}
+            <a href="mailto:{{ profile.email }}" title="Email"><i class="fa fa-envelope"></i></a>
+        {% endif %}
+    </div>
+    <a href="{% url 'projects' %}" class="button hero-btn">Ver projetos</a>
+</section>
 <h2>Projetos em destaque</h2>
 <ul>
     {% for proj in highlights %}
@@ -14,8 +27,8 @@
                 <img src="{{ proj.imagem.url }}" width="80" alt="{{ proj.title }}" />
             {% endif %}
             <p>{{ proj.description }}</p>
-            {% if proj.tecnologias.all %}
-                <small>Tecnologias: {{ proj.tecnologias.all|join:", " }}</small>
+            {% if proj.technologies.all %}
+                <small>Tecnologias: {% for t in proj.technologies.all %}{{ t.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</small>
             {% endif %}
         </li>
     {% empty %}

@@ -23,11 +23,14 @@ class Project(models.Model):
         related_name='projects',
         blank=True
     )
+    repository_url = models.URLField(null=True, blank=True)
+    demo_url = models.URLField(null=True, blank=True)
+    destaque = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-destaque', '-created_at']
         verbose_name = 'Project'
         verbose_name_plural = 'Projects'
 

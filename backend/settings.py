@@ -141,7 +141,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = []
 
 # Media files (User uploads)
 MEDIA_URL = '/media/'
@@ -173,3 +172,5 @@ CORS_ALLOWED_ORIGINS = config(
 )
 
 CORS_ALLOW_CREDENTIALS = True
+
+STATICFILES_DIRS = [BASE_DIR / 'static']

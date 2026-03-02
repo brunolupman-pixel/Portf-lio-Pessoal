@@ -6,3 +6,4 @@ from .serializers import AcademicBackgroundSerializer
 class AcademicBackgroundViewSet(viewsets.ModelViewSet):
     queryset = AcademicBackground.objects.all()
     serializer_class = AcademicBackgroundSerializer
+

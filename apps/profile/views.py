@@ -12,14 +12,12 @@ class ProfileViewSet(viewsets.ReadOnlyModelViewSet):
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.urls import reverse_lazy
-
 from apps.projects.models import Project
 from apps.academic.models import AcademicBackground
 from apps.contact.forms import ContactMessageForm
 
 
 def home(request):
-    # profile bio and highlighted projects
     profile = Profile.objects.first()
     highlights = Project.objects.filter(destaque=True).order_by('-created_at').prefetch_related('technologies')
     return render(request, 'home.html', {'profile': profile, 'highlights': highlights})
@@ -36,7 +34,7 @@ class AcademicListView(ListView):
     model = AcademicBackground
     template_name = 'academic.html'
     context_object_name = 'formations'
-    queryset = AcademicBackground.objects.select_related('profile').order_by('-end_date', '-start_date')
+    queryset = AcademicBackground.objects.select_related('profile').order_by('-start_date')
 
 
 def contact(request):
