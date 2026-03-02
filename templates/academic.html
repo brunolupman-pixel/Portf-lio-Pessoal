@@ -3,7 +3,13 @@
 <h1>Formação Acadêmica</h1>
 <ul>
     {% for f in formations %}
-        <li>{{ f.course }} - {{ f.institution }} ({{ f.start_date }} to {{ f.end_date|default:'presente' }})</li>
+        <li>
+            <strong>{{ f.course }}</strong> - {{ f.institution }}<br>
+            <small>{{ f.start_date }} até {{ f.end_date|default:'presente' }}</small>
+            {% if f.description %}
+                <p>{{ f.description }}</p>
+            {% endif %}
+        </li>
     {% empty %}
         <li>Sem registros.</li>
     {% endfor %}
