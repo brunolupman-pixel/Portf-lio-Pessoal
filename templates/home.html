@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>{{ profile.name }}</h1>
-{% if profile.photo %}
-    <img src="{{ profile.photo.url }}" alt="{{ profile.name }}" width="120" />
+{% if profile.foto %}
+    <img src="{{ profile.foto.url }}" alt="{{ profile.name }}" width="120" />
 {% endif %}
 <p>{{ profile.description }}</p>
 <h2>Projetos em destaque</h2>
@@ -10,8 +10,8 @@
     {% for proj in highlights %}
         <li>
             <strong>{{ proj.title }}</strong><br>
-            {% if proj.image %}
-                <img src="{{ proj.image.url }}" width="80" alt="{{ proj.title }}" />
+            {% if proj.imagem %}
+                <img src="{{ proj.imagem.url }}" width="80" alt="{{ proj.title }}" />
             {% endif %}
             <p>{{ proj.description }}</p>
             {% if proj.tecnologias.all %}
