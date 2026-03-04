@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="contact-container">
-    <h1>Contato</h1>
-    {% if submitted %}
-        <div class="toast-success">Sua mensagem foi enviada. Obrigado!</div>
-    {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Enviar</button>
-    </form>
+<div class="container" style="display: flex; justify-content: center; align-items: flex-start; min-height: 60vh;">
+    <div class="contact-container" style="width: 100%; max-width: 420px; margin: 0 auto;">
+        <h1 style="text-align:center;">Contato</h1>
+        {% if submitted %}
+            <div class="toast-success">Sua mensagem foi enviada. Obrigado!</div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

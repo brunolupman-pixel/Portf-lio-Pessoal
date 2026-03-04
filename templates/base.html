@@ -2,6 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'main.css' %}">
@@ -27,22 +29,22 @@
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <a href="/" class="navbar-logo">MeuLogo</a>
-            <button id="navbar-hamburger" class="navbar-hamburger" aria-label="Menu">&#9776;</button>
-            <div id="navbar-menu" class="navbar-menu">
-                <a href="{% url 'home' %}">Home</a>
-                <a href="{% url 'projects' %}">Projetos</a>
-                <a href="{% url 'academic' %}">Formação Acadêmica</a>
-                <a href="{% url 'contact' %}">Contato</a>
-            </div>
-        </nav>
+      <nav class="navbar">
+        <a href="/" class="navbar-logo">MeuLogo</a>
+        <button id="navbar-hamburger" class="navbar-hamburger" aria-label="Menu">&#9776;</button>
+        <div id="navbar-menu" class="navbar-menu">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'projects' %}">Projetos</a>
+          <a href="{% url 'academic' %}">Formação Acadêmica</a>
+          <a href="{% url 'contact' %}">Contato</a>
+        </div>
+      </nav>
     </header>
     <main class="container">
-        {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>&copy; Meu Portfolio</p>
+      <p>&copy; Meu Portfolio</p>
     </footer>
 </body>
 </html>

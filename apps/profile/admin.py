@@ -12,7 +12,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Informações Pessoais', {
-            'fields': ('name', 'photo', 'photo_preview', 'role')
+            'fields': ('name', 'foto', 'foto_preview', 'role')
         }),
         ('Informações de Contato', {
             'fields': ('email', 'linkedin', 'github')

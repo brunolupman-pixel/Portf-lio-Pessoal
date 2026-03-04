@@ -9,11 +9,11 @@
     <div class="hero-desc">{{ profile.description|truncatechars:120 }}</div>
     <div class="hero-socials">
         {% if profile.linkedin %}
-            <a href="{{ profile.linkedin }}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+            <a href="{{ profile.linkedin }}" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
         {% endif %} {% if profile.github %}
-            <a href="{{ profile.github }}" target="_blank" title="GitHub"><i class="fa fa-github"></i></a>
+            <a href="{{ profile.github }}" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         {% endif %} {% if profile.email %}
-            <a href="mailto:{{ profile.email }}" title="Email"><i class="fa fa-envelope"></i></a>
+            <a href="mailto:{{ profile.email }}" title="Email"><i class="fa-solid fa-envelope"></i></a>
         {% endif %}
     </div>
     <a href="{% url 'projects' %}" class="button hero-btn">Ver projetos</a>
